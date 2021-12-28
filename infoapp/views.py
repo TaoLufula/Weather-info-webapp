@@ -6,6 +6,8 @@ import json
 def index(request):
     if request.method == 'POST':
         city = request.POST['city']
+
+        # get API key from https://openweathermap.org/
         source = urllib.request.urlopen('http://history.openweathermap.org/data/2.5/history/city?q=' +city+ 'CA&appid= enter your API key here').read()
 
         data_list = json.loads(source)
