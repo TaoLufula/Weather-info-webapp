@@ -13,7 +13,7 @@
   <br /><br /> <br>
   <div id="jumbotron" class="jumbotron" style="text-align: center; margin-top:-50px">
     <h1 class="display-5">Weather Info </h1>
-    <h5>Provides a weeklong Temperature history for any city in Canada  </h5>
+    <h5>Provides Ottawa's Temperature history for the past 5 days  </h5>
   </div>
 
   <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
@@ -22,7 +22,7 @@
       <div class=" input-group">
       <div style="text-align: center;">
 
-      <input type="text" class="form-control" name="city" placeholder="Enter name of City ...">
+      <input type="texts" class="form-control" name="dt" placeholder="Enter the Unix Timestamp ...">
       <div class="input-group-btn">
         <button type="submit" class="btn btn-primary">Search</button>
       </div>
@@ -30,12 +30,12 @@
   </nav>
   <br> <br>
   <div class="row">
-    {% if country_code and temp %}
-    <div class="col d-flex justify-content-center">
+    {% if temp %}
+    <div class="col d-flex justify-content-center" style="text-align: center; margin-top:-20px">
       <div class=" card text-white bg-light mb-6">
-      <div class=" card-body">
-        <h4><span class="badge badge-primary">Country Code :</span> {{country_code}}</h4>  
-        <h4><span class="badge badge-primary">Temperature in Celsius :</span> {{temp}}</h4>
+      <div class=" card-body"> 
+        <h4><span class="badge badge-primary">TimeZone :</span> {{timezone}}</h4>
+        <h4><span class="badge badge-primary">Average temperature in Celsius :</span> {{temp}}</h4>
 
       </div>
       {% endif %}

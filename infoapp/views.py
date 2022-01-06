@@ -5,18 +5,17 @@ import json
 
 def index(request):
     if request.method == 'POST':
-        city = request.POST['city']
+        dt = request.POST['dt']
 
-        # get API key from https://openweathermap.org/
-        source = urllib.request.urlopen('http://history.openweathermap.org/data/2.5/history/city?q=' +city+ 'CA&appid= enter your API key here').read()
+        # Users will have to provide the unix timestamps for the 5 previous days. five calls will be perfomed, one for each timestamp.
 
+        source = urllib.request.urlopen('http://api.openweathermap.org/data/2.5/onecall/timemachine?lat=75.69&lon=45.42&dt='+ dt + '&units=metric&appid=93248baefaecb815a9686b3b21d118af').read()
+                    
         data_list = json.loads(source)
 
         data = {
-            "country_code": str(data_list['sys']['country']),
-            "temp": str(data_list['main']['temp'])+ '°C',
-            "main": str(data_list['weather'][0]['main']),
-            "icon": data_list['weather'][0]['icon']
+            "temp": str(data_list['hourly'][0]['temp'])+ '°C',
+            "timezone":str(data_list['timezone']), 
         }
         print(data)
     else:
